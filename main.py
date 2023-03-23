@@ -6,9 +6,6 @@ import numpy as np
 import GrafoLista
 import GrafoMatriz
 
-
-
-
 def menu():
 
     print("1 - Inserir Vértice")
@@ -60,7 +57,38 @@ while opcao != 0:
     if opcao == 2:
 
         # Constrói o Grafo em LISTA de Adjacências
-        GrafoLista.criaGrafo(direcionado, ponderado)
+        Grafo = GrafoLista.criaGrafo(direcionado, ponderado)
 
-        GrafoLista.menu()
+        # Looping do Menu do Grafo
+        while menu() != 0:
 
+            # 1 - Inserir Vértice
+            if 1:
+
+                rotulo = str(input("Insira o rótulo do vértice: "))
+                Grafo
+
+            # 2 - Remover Vértice
+            elif 2:
+                pass
+            # 3 - Rotular Vértice
+            elif 3:
+                pass
+            # 4 - Imprimir Grafo
+            elif 4:
+                pass
+            # 5 - Inserir Aresta
+            elif 5:
+                pass
+            # 6 - Remover Aresta
+            elif 6:
+                pass
+            # 7 - Existe Aresta
+            elif 7:
+                pass
+            # 8 - Peso Aresta
+            elif 8:
+                pass
+            # 9 - Retorna Vizinhos
+            elif 9:
+                pass

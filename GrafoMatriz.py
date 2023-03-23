@@ -13,55 +13,29 @@ class GrafoLista:
         # Se o Grafo é ponderado (arestas com pesos) ou não
         self.ponderado = ponderado
 
+    def inserirVertice(self):
+        pass
 
-# Função P/ Criar o Grafo
-def criaGrafo(direcionado, ponderado):
+    def removerVertice(self):
+        pass
 
-    if direcionado:
+    def rotulaVertice(self):
+        pass
 
-        if ponderado:
-            GrafoLista(direcionado, ponderado)
-        else:
-            GrafoLista(direcionado, ponderado)
-    else:
-        if ponderado:
-            GrafoLista(direcionado, ponderado)
-        else:
-            GrafoLista(direcionado, ponderado)
+    def imprimeGrafo(self):
+        pass
 
+    def inserirAresta(self):
+        pass
 
+    def removerAresta(self):
+        pass
 
-def inserirVertice(self):
-    pass
+    def existeAresta(self):
+        pass
 
+    def pesoAresta(self):
+        pass
 
-def removerVertice(self):
-    pass
-
-
-def rotulaVertice(self):
-    pass
-
-
-def imprimeGrafo(self):
-    pass
-
-
-def inserirAresta(self):
-    pass
-
-
-def removerAresta(self):
-    pass
-
-
-def existeAresta(self):
-    pass
-
-
-def pesoAresta(self):
-    pass
-
-
-def retornaVizinhos(self):
-    pass
+    def retornaVizinhos(self):
+        pass
