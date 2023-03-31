@@ -1,84 +1,140 @@
-# Classe Grafo
+# Classe GrafoLista
 class GrafoLista:
 
-    # Construtor do Grafo
-    def __init__(self, direcionado, ponderado):
+    # Construtor
+    def __init__(self, ponderado, direcionado):
 
-        # Valor de ID do vértice
-        self.index = 0
+        # Lista de Vértices
+        self.vertices = []
 
-        # Lista de vértices
-        self.vertices = {}
+        # Lista de Arestas
+        self.arestas = []
+
+        # Se o Grafo é ponderado ou não
+        self.ponderado = ponderado
 
         # Se o Grafo é direcionado ou não
         self.direcionado = direcionado
 
-        # Se o Grafo é ponderado (arestas com pesos) ou não
-        self.ponderado = ponderado
-
-
+    # Inserir Vértice
     def inserirVertice(self, rotulo):
-        self.GrafoLista[self.GrafoLista.]
+
+        # Verifica se o Vértice já existe
+        for vertice in self.vertices:
+
+            # Se existir
+            if vertice.rotulo == rotulo:
+
+                # Cria Vertice
+                vertice = Vertice(rotulo, [])
+
+                # Insere o Vértice no GrafoLista
+                self.vertices.append(vertice)
+
+    # Remover Vértice
+    def removerVertice(self, rotulo):
+
+        # Verifica se o vértice existe no Grafo
+        existe = False
+        for vertice in self.vertices:
+
+            # Se existir
+            if vertice.rotulo == rotulo:
+
+                # Remove o vértice
+                self.vertices.remove(vertice)
+                return True
+
+        # Senão
+        if not existe:
+            return False
+
+    # Rotular Vértice
+    def rotulaVertice(self, rotulo, novo_rotulo):
+
+        # Verifica se o vértice existe no Grafo
+        existe = False
+        for vertice in self.vertices:
+
+            # Se existir
+            if vertice.rotulo == rotulo:
+                vertice.rotulo = rotulo
+                return True
+
+        # Senão
+        if not existe:
+            return False
+
+    # Imprimir Grafo
+    def imprimirGrafo(self):
+
+        # Imprime vértices
+        for vertice in self.vertices:
+            print(vertice.rotulo)
+
+    # Inserir Aresta
+    def inserirAresta(self, origem, destino, peso):
+
+        existe_origem = False
+        existe_destino = False
+
+        # Verifica se o vértice de ORIGEM existe
+        for aresta in self.arestas:
+
+            # Se existir o Vértice ORIGEM no Grafo
+            if aresta.origem == origem:
+
+                existe_origem = True
+
+                # Verifica se o vértice de DESTINO existe
+                for aresta in self.arestas:
+
+                    # Se existir o Vértice DESTINO no Grafo
+                    if aresta.destino == destino:
+
+                        existe_destino = True
+
+                        # Cria Aresta
+                        nova_aresta = Aresta(origem, destino, peso)
+
+                        # Insere a nova_aresta no Grafo
+                        self.arestas.append(nova_aresta)
+
+                        return True
+
+        # Senão
+
+        if existe_origem:
+            print("Vértice de Origem não existe!")
+        else:
+            print("Vértice de Destino não existe!")
+        return False
 
 
-    def removerVertice(self):
-        pass
 
-
-    def rotulaVertice(self):
-        pass
-
-
-    def imprimeGrafo(self):
-        pass
-
-
-    def inserirAresta(self):
-        pass
-
-
-    def removerAresta(self):
-        pass
-
-
-    def existeAresta(self):
-        pass
-
-
-    def pesoAresta(self):
-        pass
-
-
-    def retornaVizinhos(self):
-        pass
 
 class Vertice:
 
-    def __init__(self, id, rotulo, arestas):
+    # Construtor do Vértice
+    def __init__(self, rotulo, arestas):
 
-        # ID do vértice
-        self.id = id
-
-        # Rótulo do vértice
+        # Rótulo (nome) do Vértice
         self.rotulo = rotulo
 
-        # Lista de arestas do vértice (vizinhos)
+        # Lista de Arestas
         self.arestas = arestas
 
 
-
-
-# Classe Aresta
 class Aresta:
 
-    # Construtor
+    # Construtor da Aresta
     def __init__(self, origem, destino, peso):
 
-        # Define o vértice de origem
+        # Vértice de Origem
         self.origem = origem
 
-        # Define o vértice de destino
+        # Vértice de Destino
         self.destino = destino
 
-        # Define o peso da aresta
+        # Peso da Aresta
         self.peso = peso

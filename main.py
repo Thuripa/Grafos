@@ -1,10 +1,8 @@
 # Trabalho de Grafos Python
 # Guilherme Melo de Jesus
 
-import numpy as np
-
 import GrafoLista
-import GrafoMatriz
+
 
 def menu():
 
@@ -19,10 +17,9 @@ def menu():
     print("9 - Retorna Vizinhos")
     print("0 - SAIR")
 
-    menu = int(input("Escolha uma opção: "))
+    menuGrafo = int(input("Escolha uma opção: "))
 
-    if menu == 1:
-        pass
+    return menuGrafo
 
 
 print("Trabalho de Grafos")
@@ -31,8 +28,9 @@ print("2 - Criar Grafo em Lista")
 print("0 - SAIR")
 
 opcao = int(input("Escolha uma opção:  "))
-dir = str(input("O Grafo é Direcionado? (S/N)"))
-pond = str(input("O Grafo é Ponderado? (S/N)"))
+dir = str(input("O Grafo é Direcionado? (S/N) : "))
+pond = str(input("O Grafo é Ponderado? (S/N) : "))
+print("")
 
 # Se o Grafo for Direcionado
 if dir == "S" or dir == "s":
@@ -47,48 +45,106 @@ while opcao != 0:
 
     # Cria Grafo numa Matriz
     if opcao == 1:
-
-        # Constrói o Grafo em MATRIZ de Adjacências
-        GrafoMatriz.criaGrafo(direcionado, ponderado)
-
-        GrafoMatriz.menu()
-
+        pass
     # Cria Grafo numa Lista
     if opcao == 2:
 
-        # Constrói o Grafo em LISTA de Adjacências
-        Grafo = GrafoLista.criaGrafo(direcionado, ponderado)
+        # Constrói o Grafo
+        grafo = GrafoLista.GrafoLista(ponderado, direcionado)
 
         # Looping do Menu do Grafo
-        while menu() != 0:
+        menuGrafo = menu()
+        while menuGrafo != 0:
 
             # 1 - Inserir Vértice
-            if 1:
+            if menuGrafo == 1:
 
-                rotulo = str(input("Insira o rótulo do vértice: "))
-                Grafo
+                # Define o rótulo do vértice
+                rotulo = str(input("Insira um rótulo para o Vértice: ").strip())
+
+                # Insere o vértice no Grafo
+                grafo.inserirVertice(rotulo)
+                print("Vértice inserido com sucesso")
+                print()
 
             # 2 - Remover Vértice
-            elif 2:
-                pass
+            elif menuGrafo == 2:
+
+                # Define o rótulo do vértice a ser inserido
+                rotulo = str(input("Insira o rótulo do vértice a ser excluído: ")).strip()
+
+                # Se o vértice existe no Grafo
+                if grafo.removerVertice(rotulo):
+
+                    print("Vértice removido")
+
+                # Se não existir
+                else:
+                    print("Vértice não existe!")
+
             # 3 - Rotular Vértice
-            elif 3:
-                pass
+            elif menuGrafo == 3:
+
+                # Define o vértice a ser editado
+                rotulo = str(input("Insira o vértice a ser editado: ")).strip()
+
+                # Define o vértice
+                novo_rotulo = str(input("Insira o novo rótulo: ")).strip()
+
+                # Edita o rótulo do vértice
+
             # 4 - Imprimir Grafo
-            elif 4:
-                pass
+            elif menuGrafo == 4:
+                grafo.imprimirGrafo()
+
             # 5 - Inserir Aresta
-            elif 5:
-                pass
+            elif menuGrafo == 5:
+
+                # Se for um Grafo Direcionado
+                if direcionado:
+
+                    # Se for um Grafo Ponderado
+                    if ponderado:
+
+                        # Define o Vértice de Origem
+                        origem = str(input("Insira o Vértice de Origem: ")).strip()
+
+                        # Define o Vértice de Destino
+                        destino = str(input("Insira o Vértice de Destino: ")).strip()
+
+                        # Define o Peso do Vértice
+                        peso = int(input("Insira o Peso da Aresta: "))
+
+                        # Insere Aresta no Grafo
+                        if grafo.inserirAresta(origem, destino, peso):
+
+                           print("Aresta Inserida de "+origem+" Para "+destino)
+
+                    # Se Não for um Grafo Ponderado
+                    else:
+
+                        # Define o Vértice de Origem
+                        origem = str(input("Insira o Vértice de Origem: "))
+
+                        # Define o Vértice de Destino
+                        destino = str(input("Insira o Vértice de Destino: "))
+
+                # Se for um Grafo Não Direcionado
+                else:
+                    pass
+
             # 6 - Remover Aresta
-            elif 6:
+            elif menuGrafo == 6:
                 pass
             # 7 - Existe Aresta
-            elif 7:
+            elif menuGrafo == 7:
                 pass
             # 8 - Peso Aresta
-            elif 8:
+            elif menuGrafo == 8:
                 pass
             # 9 - Retorna Vizinhos
-            elif 9:
+            elif menuGrafo == 9:
                 pass
+
+            # Looping do Menu do Grafo
+            menuGrafo = menu()
