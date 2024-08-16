@@ -1,9 +1,10 @@
 # Trabalho de Grafos Python
-# Guilherme Melo de Jesus
+# Guilherme Melo de Jesus e Rõmulo Pedro Thomsen
 
 import GrafoLista
 
-
+# MENU DO GRAFO CRIADO
+# Esse menu serve para modificar o grafo depois de criado
 def menu():
 
     print("1 - Inserir Vértice")
@@ -22,6 +23,7 @@ def menu():
     return menuGrafo
 
 
+# INICIO DO PROGRAMA
 print("Trabalho de Grafos")
 print("1 - Criar Grafo em Matriz")
 print("2 - Criar Grafo em Lista")
@@ -32,106 +34,152 @@ dir = str(input("O Grafo é Direcionado? (S/N) : "))
 pond = str(input("O Grafo é Ponderado? (S/N) : "))
 print("")
 
-# Se o Grafo for Direcionado
+# DEFINE SE O GRAFO É OU NÃO DIRECIONADO
 if dir == "S" or dir == "s":
     direcionado = True
+else:
+    direcionado = False    
 
-# Se o Grafo for Ponderado
+# DEFINE SE O GRAFO É OU NÃO PONDERADO
 if pond == "S" or pond == "s":
     ponderado = True
+else: 
+    ponderado = False
 
+# LOOPING DO MENU INICIAL
 # Enquanto o usuário não escolher 0 - SAIR
 while opcao != 0:
 
-    # Cria Grafo numa Matriz
+    # CRIA GRAFO NUMA MATRIZ - A SER IMPLEMENTADO
     if opcao == 1:
-        pass
-    # Cria Grafo numa Lista
+
+        # A SER IMPLEMENTADO
+        print("A FUNÇÃO AINDA NÃO FOI IMPLEMENTADA!")
+        break
+
+    # CRIA GRAFO NUMA LISTA
     if opcao == 2:
 
-        # Constrói o Grafo
+        # CONSTRÓI O GRAFO
         grafo = GrafoLista.GrafoLista(ponderado, direcionado)
 
-        # Looping do Menu do Grafo
+        # LOOPING DO MENU GRAFO
+        # Enquanto menuGrafo for diferente de 0 - SAIR
         menuGrafo = menu()
         while menuGrafo != 0:
 
-            # 1 - Inserir Vértice
+            # 1 - INSERIR VÉRTICE
             if menuGrafo == 1:
 
-                # Define o rótulo do vértice
+                # DEFINE O RÓTULO DO NOVO VÉRTICE
                 rotulo = str(input("Insira um rótulo para o Vértice: ").strip())
 
-                # Insere o vértice no Grafo
-                grafo.inserirVertice(rotulo)
-                print("Vértice inserido com sucesso")
-                print()
+                # VERIFICA SE JÁ EXISTE ESSE RÓTULO NUM VÉRTICE
+                existe = grafo.existeVertice(rotulo)
 
-            # 2 - Remover Vértice
+                # SE JÁ EXISTIR
+                if (existe):
+                    print("VÉRTICE JÁ EXISTENTE")
+
+                # SENÃO
+                else: 
+                    grafo.inserirVertice(rotulo)    
+                    print("Vértice inserido com sucesso!")
+
+                
+
+            # 2 - REMOVER VÉRTICE
             elif menuGrafo == 2:
 
-                # Define o rótulo do vértice a ser inserido
+                # DEFINE O RÓTULO DO VÉRTICE A SER INSERIDO
                 rotulo = str(input("Insira o rótulo do vértice a ser excluído: ")).strip()
 
-                # Se o vértice existe no Grafo
+                # SE O VÉRTICE EXISTE NO GRAFO
                 if grafo.removerVertice(rotulo):
 
                     print("Vértice removido")
 
-                # Se não existir
+                # SE NÃO EXISTIR
                 else:
                     print("Vértice não existe!")
 
-            # 3 - Rotular Vértice
+            # 3 - ROTULAR VÉRTICE
+            # Edita o rótulo do vértice
             elif menuGrafo == 3:
 
-                # Define o vértice a ser editado
+                # DEFINE O RÓTULO DO VÉRTICE A SER EDITADO
                 rotulo = str(input("Insira o vértice a ser editado: ")).strip()
 
-                # Define o vértice
+                # DEFINE O NOVO RÓTULO DO VÉRTICE
                 novo_rotulo = str(input("Insira o novo rótulo: ")).strip()
 
-                # Edita o rótulo do vértice
+                
 
-            # 4 - Imprimir Grafo
+            # 4 - IMPRIMIR GRAFO
             elif menuGrafo == 4:
                 grafo.imprimirGrafo()
 
-            # 5 - Inserir Aresta
+            # 5 - INSERIR ARESTA
             elif menuGrafo == 5:
 
-                # Se for um Grafo Direcionado
+                # SE FOR UM GRAFO DIRECIONADO
                 if direcionado:
 
-                    # Se for um Grafo Ponderado
+                    # SE FOR UM GRAFO PONDERADO
                     if ponderado:
 
-                        # Define o Vértice de Origem
+                        # DEFINE O VÉRTICE DE ORIGEM
                         origem = str(input("Insira o Vértice de Origem: ")).strip()
 
-                        # Define o Vértice de Destino
+                        # DEFINE O VÉRTICE DE DESTINO
                         destino = str(input("Insira o Vértice de Destino: ")).strip()
 
-                        # Define o Peso do Vértice
+                        # DEFINE O PESO DA ARESTA
                         peso = int(input("Insira o Peso da Aresta: "))
 
-                        # Insere Aresta no Grafo
+                        # INSERE ARESTA NO GRAFO
                         if grafo.inserirAresta(origem, destino, peso):
 
                            print("Aresta Inserida de "+origem+" Para "+destino)
 
-                    # Se Não for um Grafo Ponderado
+                    # SE NÃO FOR UM GRAFO PONDERADO
                     else:
 
-                        # Define o Vértice de Origem
+                        # DEFINE O VÉRTICE DE ORIGEM
                         origem = str(input("Insira o Vértice de Origem: "))
 
-                        # Define o Vértice de Destino
+                        # DEFINE O VÉRTICE DE DESTINO
                         destino = str(input("Insira o Vértice de Destino: "))
 
-                # Se for um Grafo Não Direcionado
+                # SE FOR UM GRAFO NÃO DIRECIONADO
                 else:
-                    pass
+
+                    # SE FOR UM GRAFO PONDERADO
+                    if ponderado:
+
+                        # DEFINE O VÉRTICE DE ORIGEM
+                        origem = str(input("Insira o Vértice de Origem: ")).strip()
+
+                        # DEFINE O VÉRTICE DE DESTINO
+                        destino = str(input("Insira o Vértice de Destino: ")).strip()
+
+                        # DEFINE O PESO DA ARESTA
+                        peso = int(input("Insira o Peso da Aresta: "))
+
+                        # INSERE ARESTA NO GRAFO
+                        if grafo.inserirAresta(origem, destino, peso):
+
+                           print("Aresta Inserida de "+origem+" Para "+destino)
+
+                    # SE NÃO FOR UM GRAFO PONDERADO
+                    else:
+
+                        # DEFINE O VÉRTICE DE ORIGEM
+                        origem = str(input("Insira o Vértice de Origem: "))
+
+                        # DEFINE O VÉRTICE DE DESTINO
+                        destino = str(input("Insira o Vértice de Destino: "))
+
 
             # 6 - Remover Aresta
             elif menuGrafo == 6:

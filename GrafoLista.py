@@ -24,12 +24,20 @@ class GrafoLista:
 
             # Se existir
             if vertice.rotulo == rotulo:
+                
+                # Retorna Falso em Caso de Falha
+                return False
 
-                # Cria Vertice
-                vertice = Vertice(rotulo, [])
+        # Se não existir
 
-                # Insere o Vértice no GrafoLista
-                self.vertices.append(vertice)
+        # Cria Vertice
+        vertice = Vertice(rotulo, [])
+
+        # Insere o Vértice no GrafoLista
+        self.vertices.append(vertice)    
+        
+        # Retorna Verdadeiro em Caso de Sucesso
+        return True
 
     # Remover Vértice
     def removerVertice(self, rotulo):
@@ -110,6 +118,20 @@ class GrafoLista:
             print("Vértice de Destino não existe!")
         return False
 
+# VERIFICA SE O VÉRTICE EXISTE NO GRAFO
+def existeVertice(self, rotulo):
+        
+    # PARA CADA VERTICE NO GRAFO
+    for vertice in self.vertices:
+
+        # SE O ROTULO FOR IGUAL A UM DOS VERTICES
+        if vertice.rotulo == rotulo:
+                
+            # RETORNA VERDADEIRO (VERTICE EXISTE NO GRAFO)
+            return True
+
+    # SENAO, RETORNA FALSO
+    return False        
 
 
 
