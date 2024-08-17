@@ -16,7 +16,7 @@ class GrafoLista:
         # Se o Grafo é direcionado ou não
         self.direcionado = direcionado
 
-    # Inserir Vértice
+    # INSERIR VERTICE
     def inserirVertice(self, rotulo):
 
         # Verifica se o Vértice já existe
@@ -39,7 +39,7 @@ class GrafoLista:
         # Retorna Verdadeiro em Caso de Sucesso
         return True
 
-    # Remover Vértice
+    # REMOVER VERTICE
     def removerVertice(self, rotulo):
 
         # Verifica se o vértice existe no Grafo
@@ -57,7 +57,7 @@ class GrafoLista:
         if not existe:
             return False
 
-    # Rotular Vértice
+    # ROTULAR VERTICE (EDITAR)
     def rotulaVertice(self, rotulo, novo_rotulo):
 
         # Verifica se o vértice existe no Grafo
@@ -73,32 +73,40 @@ class GrafoLista:
         if not existe:
             return False
 
-    # Imprimir Grafo
+    # IMPRIMIR GRAFO
     def imprimirGrafo(self):
 
         # Imprime vértices
         for vertice in self.vertices:
+            
+            # Imprime o rótulo do vértice
             print(vertice.rotulo)
 
-    # Inserir Aresta
+            # FALTA IMPRIMIR AS ARESTAS DE CADA VERTICE
+                
+
+
+            
+
+    # INSERIR ARESTA
     def inserirAresta(self, origem, destino, peso):
 
         existe_origem = False
         existe_destino = False
 
         # Verifica se o vértice de ORIGEM existe
-        for aresta in self.arestas:
+        for vertice in self.vertices:
 
             # Se existir o Vértice ORIGEM no Grafo
-            if aresta.origem == origem:
+            if vertice.origem == origem:
 
                 existe_origem = True
 
                 # Verifica se o vértice de DESTINO existe
-                for aresta in self.arestas:
+                for vertice in self.vertices:
 
                     # Se existir o Vértice DESTINO no Grafo
-                    if aresta.destino == destino:
+                    if vertice.destino == destino:
 
                         existe_destino = True
 
@@ -134,7 +142,7 @@ def existeVertice(self, rotulo):
     return False        
 
 
-
+# CLASSE VERTICE
 class Vertice:
 
     # Construtor do Vértice
@@ -146,7 +154,7 @@ class Vertice:
         # Lista de Arestas
         self.arestas = arestas
 
-
+# CLASSE ARESTA
 class Aresta:
 
     # Construtor da Aresta

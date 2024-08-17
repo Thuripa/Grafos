@@ -75,7 +75,7 @@ while opcao != 0:
                 rotulo = str(input("Insira um rótulo para o Vértice: ").strip())
 
                 # VERIFICA SE JÁ EXISTE ESSE RÓTULO NUM VÉRTICE
-                existe = grafo.existeVertice(rotulo)
+                existe = GrafoLista.existeVertice(grafo, rotulo)
 
                 # SE JÁ EXISTIR
                 if (existe):
@@ -150,11 +150,20 @@ while opcao != 0:
 
                         # DEFINE O VÉRTICE DE DESTINO
                         destino = str(input("Insira o Vértice de Destino: "))
+                        
+                        # PESO = 0 PARA GRAFO NÃO PONDERADO
+                        peso = 0
+                        # INSERE ARESTA NO GRAFO
+                        if grafo.inserirAresta(origem, destino, peso):
+
+                           print("Aresta Inserida de "+origem+" Para "+destino)
+                        else:
+                            print("FALHA AO INSERIR ARESTA")   
 
                 # SE FOR UM GRAFO NÃO DIRECIONADO
                 else:
 
-                    # SE FOR UM GRAFO PONDERADO
+                    # SE FOR UM GRAFO PONDERADO 
                     if ponderado:
 
                         # DEFINE O VÉRTICE DE ORIGEM
@@ -179,20 +188,29 @@ while opcao != 0:
 
                         # DEFINE O VÉRTICE DE DESTINO
                         destino = str(input("Insira o Vértice de Destino: "))
+                        
+                         # PESO = 0 PARA GRAFO NÃO PONDERADO
+                        peso = 0
+                        
+                        # INSERE ARESTA NO GRAFO
+                        if grafo.inserirAresta(origem, destino, peso):
 
+                           print("Aresta Inserida de "+origem+" Para "+destino)
+                        else:
+                            print("FALHA AO INSERIR ARESTA")   
 
-            # 6 - Remover Aresta
+            # 6 - REMOVER ARESTA
             elif menuGrafo == 6:
                 pass
-            # 7 - Existe Aresta
+            # 7 - EXISTE ARESTA
             elif menuGrafo == 7:
                 pass
-            # 8 - Peso Aresta
+            # 8 - PESO ARESTA
             elif menuGrafo == 8:
                 pass
-            # 9 - Retorna Vizinhos
+            # 9 - RETORNA VIZINHOS
             elif menuGrafo == 9:
                 pass
 
-            # Looping do Menu do Grafo
+            # LOOPING DO MENU DO GRAFO
             menuGrafo = menu()
