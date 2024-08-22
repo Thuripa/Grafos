@@ -4,12 +4,6 @@ class GrafoLista:
     # Construtor
     def __init__(self, ponderado, direcionado):
 
-        # Lista de Vértices
-        self.vertices = []
-
-        # Lista de Arestas
-        self.arestas = []
-
         # Se o Grafo é ponderado ou não
         self.ponderado = ponderado
 
@@ -18,6 +12,17 @@ class GrafoLista:
 
     # INSERIR VERTICE
     def inserirVertice(self, rotulo):
+
+        # Verifica se o Vértice já existe
+        for vertice in self.vertices:
+
+            # Se existir
+            if vertice.rotulo == rotulo:
+                
+                # Retorna Falso em Caso de Falha
+                return False
+
+        # Se não existir
 
         # Cria Vertice
         vertice = Vertice(rotulo, [])
