@@ -65,6 +65,9 @@ class GrafoLista:
     # IMPRIMIR GRAFO
     def imprimirGrafo(self):
 
+        # PULA UMA LINHA
+        print()
+
         # Imprime vértices
         for vertice in self.vertices:
             
@@ -72,6 +75,9 @@ class GrafoLista:
             print(vertice.rotulo)
 
             # FALTA IMPRIMIR AS ARESTAS DE CADA VERTICE
+
+        # PULA UMA LINHA
+        print()    
                 
 
 
@@ -80,6 +86,7 @@ class GrafoLista:
     # INSERIR ARESTA
     def inserirAresta(self, origem, destino, peso):
 
+
         # Existe origem
         existe_origem = False
 
@@ -87,7 +94,7 @@ class GrafoLista:
         for vertice in self.vertices:
 
             # Se existir o Vértice ORIGEM no Grafo
-            if vertice.origem == origem:
+            if str(vertice) == origem:
 
                 existe_origem = True
 
@@ -95,7 +102,7 @@ class GrafoLista:
                 for vertice in self.vertices:
 
                     # Se existir o Vértice DESTINO no Grafo
-                    if vertice.destino == destino:
+                    if str(vertice) == destino:
 
                         # Cria Aresta
                         nova_aresta = Aresta(origem, destino, peso)
@@ -106,27 +113,46 @@ class GrafoLista:
                         return True
 
         # Senão
-
-        if existe_origem:
+        # Se não houver o vértice de ORIGEM no grafo
+        if existe_origem == False:
             print("Vértice de Origem não existe!")
+        
+        # Se não houver o vértice de DESTINO no grafo
         else:
             print("Vértice de Destino não existe!")
         return False
 
-# VERIFICA SE O VÉRTICE EXISTE NO GRAFO
-def existeVertice(self, rotulo):
+    # REMOVER ARESTA
+    def removerAresta(self, origem, destino):
+        pass
+
+    # EXISTE ARESTA
+    def existeAresta(self, origem, destino):
+        pass
+
+    # RETORNA O PESO DA ARESTA
+    def pesoAresta(self, origem, destino):
+        pass
+
+    # RETORNA VIZINHOS
+    def retornaVizinhos(rotulo):
+        pass
+
+
+    # VERIFICA SE O VÉRTICE EXISTE NO GRAFO
+    def existeVertice(self, rotulo):
         
-    # PARA CADA VERTICE NO GRAFO
-    for vertice in self.vertices:
+        # PARA CADA VERTICE NO GRAFO
+        for vertice in self.vertices:
 
-        # SE O ROTULO FOR IGUAL A UM DOS VERTICES
-        if vertice.rotulo == rotulo:
-                
-            # RETORNA VERDADEIRO (VERTICE EXISTE NO GRAFO)
-            return True
+            # SE O ROTULO FOR IGUAL A UM DOS VERTICES
+            if vertice.rotulo == rotulo:
+                    
+                # RETORNA VERDADEIRO (VERTICE EXISTE NO GRAFO)
+                return True
 
-    # SENAO, RETORNA FALSO
-    return False        
+        # SENAO, RETORNA FALSO
+        return False        
 
 
 # CLASSE VERTICE

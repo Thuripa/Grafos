@@ -7,6 +7,7 @@ import GrafoLista
 # Esse menu serve para modificar o grafo depois de criado
 def menu():
 
+    print()
     print("1 - Inserir Vértice")
     print("2 - Remover Vértice")
     print("3 - Rotular Vértice")
@@ -75,7 +76,7 @@ while opcao != 0:
                 rotulo = str(input("Insira um rótulo para o Vértice: ").strip())
 
                 # VERIFICA SE JÁ EXISTE ESSE RÓTULO NUM VÉRTICE
-                existe = GrafoLista.existeVertice(grafo, rotulo)
+                existe = grafo.existeVertice(rotulo)
 
                 # SE JÁ EXISTIR
                 if (existe):
@@ -159,6 +160,7 @@ while opcao != 0:
                            print("Aresta Inserida de "+origem+" Para "+destino)
                         else:
                             print("FALHA AO INSERIR ARESTA")   
+                            print()
 
                 # SE FOR UM GRAFO NÃO DIRECIONADO
                 else:
