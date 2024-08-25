@@ -68,47 +68,68 @@ class GrafoLista:
         # PULA UMA LINHA
         print()
 
-        # Imprime vértices
+        # IMPRIME VÉRTICES
+        # Para cada vértice no grafo
         for vertice in self.vertices:
             
-            # Imprime o rótulo do vértice
-            print(vertice.rotulo)
+            # Pega o rótulo do vértice
+            print(vertice.rotulo + ": ")
 
-            # FALTA IMPRIMIR AS ARESTAS DE CADA VERTICE
+            # Percorre vizinhos do vértice
+            for aresta in vertice.arestas:
 
-        # PULA UMA LINHA
-        print()    
+                # Adiciona o rótulo do vizinho na lista
+                print(" -> " + aresta.destino.rotulo, end=" ")
+
+            # PULA UMA LINHA
+            print()    
                 
-
-
-            
-
     # INSERIR ARESTA
     def inserirAresta(self, origem, destino, peso):
-
 
         # Existe origem
         existe_origem = False
 
         # Verifica se o vértice de ORIGEM existe
-        for vertice in self.vertices:
+        for vertice_origem in self.vertices:
 
             # Se existir o Vértice ORIGEM no Grafo
-            if str(vertice) == origem:
+            if vertice_origem.rotulo == origem:
 
                 existe_origem = True
 
                 # Verifica se o vértice de DESTINO existe
-                for vertice in self.vertices:
+                for vertice_destino in self.vertices:
 
                     # Se existir o Vértice DESTINO no Grafo
-                    if str(vertice) == destino:
+                    if vertice_destino.rotulo == destino:
 
-                        # Cria Aresta
-                        nova_aresta = Aresta(origem, destino, peso)
+                        # Se o Grafo for DIRECIONADO
+                        if self.direcionado:
+                            
+                            # Cria uma nova Aresta
+                            nova_aresta = Aresta(vertice_origem, vertice_destino, peso)
 
-                        # Insere a nova_aresta no Grafo
-                        self.arestas.append(nova_aresta)
+                            # Insere Aresta nos Vertices
+                            vertice_origem.arestas.append(nova_aresta)
+
+                            # Insere a nova_aresta no Grafo
+                            #self.arestas.append(nova_aresta)
+
+                        # Se o Grafo for NÃO DIRECIONADO
+                        else:
+
+                            # Cria duas arestas para o grafo NÃO DIRECIONADO (vai e volta)
+                            nova_aresta1 = Aresta(vertice_origem, vertice_destino, peso)
+                            nova_aresta2 = Aresta(vertice_destino, vertice_origem, peso)
+
+                            # Insere Aresta nos Vertices
+                            vertice_origem.arestas.append(nova_aresta1)
+                            vertice_destino.arestas.append(nova_aresta2)
+
+                            # Insere a nova_aresta no Grafo
+                            #self.arestas.append(nova_aresta1)
+                            #self.arestas.append(nova_aresta2)
 
                         return True
 
@@ -124,11 +145,43 @@ class GrafoLista:
 
     # REMOVER ARESTA
     def removerAresta(self, origem, destino):
-        pass
+        
+        # Verifica se o vértice de ORIGEM existe
+        for vertice_origem in self.vertices:
+
+            # Se existir o Vértice ORIGEM no Grafo
+            if vertice_origem.rotulo == origem:
+
+                # Verifica se o vértice de DESTINO existe
+                for vertice_destino in self.vertices:
+
+                    # Se existir o Vértice DESTINO no Grafo
+                    if vertice_destino.rotulo == destino:
+                        
+                        # REMOVE ARESTA
+                        pass
 
     # EXISTE ARESTA
     def existeAresta(self, origem, destino):
-        pass
+        
+        # Verifica se o vértice de ORIGEM existe
+        for vertice_origem in self.vertices:
+
+            # Se existir o Vértice ORIGEM no Grafo
+            if vertice_origem.rotulo == origem:
+
+                # Verifica se o vértice de DESTINO existe
+                for vertice_destino in self.vertices:
+
+                    # Se existir o Vértice DESTINO no Grafo
+                    if vertice_destino.rotulo == destino:
+                        
+                        # Busca Vizinhos do Vértice de ORIGEM
+                        for aresta in vertice_origem.arestas:
+
+                            # 
+                            if aresta.destino.rotulo == vertice_destino.rotulo:
+                                pass 
 
     # RETORNA O PESO DA ARESTA
     def pesoAresta(self, origem, destino):
@@ -137,7 +190,6 @@ class GrafoLista:
     # RETORNA VIZINHOS
     def retornaVizinhos(rotulo):
         pass
-
 
     # VERIFICA SE O VÉRTICE EXISTE NO GRAFO
     def existeVertice(self, rotulo):
@@ -154,7 +206,6 @@ class GrafoLista:
         # SENAO, RETORNA FALSO
         return False        
 
-
 # CLASSE VERTICE
 class Vertice:
 
@@ -165,7 +216,7 @@ class Vertice:
         self.rotulo = rotulo
 
         # Lista de Arestas
-        self.arestas = arestas
+        self.arestas = []
 
 # CLASSE ARESTA
 class Aresta:

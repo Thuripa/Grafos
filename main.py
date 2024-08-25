@@ -2,6 +2,7 @@
 # Guilherme Melo de Jesus e Rõmulo Pedro Thomsen
 
 import GrafoLista
+import GrafoMatriz
 
 # MENU DO GRAFO CRIADO
 # Esse menu serve para modificar o grafo depois de criado
@@ -24,7 +25,7 @@ def menu():
     return menuGrafo
 
 
-# INICIO DO PROGRAMA
+# INICIO DO PROGRAMA 
 print("Trabalho de Grafos")
 print("1 - Criar Grafo em Matriz")
 print("2 - Criar Grafo em Lista")
@@ -141,7 +142,8 @@ while opcao != 0:
                         # INSERE ARESTA NO GRAFO
                         if grafo.inserirAresta(origem, destino, peso):
 
-                           print("Aresta Inserida de "+origem+" Para "+destino)
+                            print()
+                            print("Aresta Inserida de "+origem+" Para "+destino)
 
                     # SE NÃO FOR UM GRAFO PONDERADO
                     else:
@@ -157,7 +159,8 @@ while opcao != 0:
                         # INSERE ARESTA NO GRAFO
                         if grafo.inserirAresta(origem, destino, peso):
 
-                           print("Aresta Inserida de "+origem+" Para "+destino)
+                            print()
+                            print("Aresta Inserida de "+origem+" Para "+destino)
                         else:
                             print("FALHA AO INSERIR ARESTA")   
                             print()
@@ -180,7 +183,11 @@ while opcao != 0:
                         # INSERE ARESTA NO GRAFO
                         if grafo.inserirAresta(origem, destino, peso):
 
-                           print("Aresta Inserida de "+origem+" Para "+destino)
+                            print()
+                            print("Aresta Inserida de "+origem+" Para "+destino)
+
+                        else:
+                            print("FALHA AO INSERIR ARESTA")  
 
                     # SE NÃO FOR UM GRAFO PONDERADO
                     else:
@@ -194,9 +201,14 @@ while opcao != 0:
                          # PESO = 0 PARA GRAFO NÃO PONDERADO
                         peso = 0
                         
-                        # INSERE ARESTA NO GRAFO
+                        # INSERE ARESTA NO GRAFO (Retorna True ou False)
+                        # Insere aresta da ORIGEM para o DESTINO
                         if grafo.inserirAresta(origem, destino, peso):
+                           
+                           # Insere aresta do DESTINO para ORIGEM
+                           grafo.inserirAresta(destino, origem, peso)
 
+                           print()
                            print("Aresta Inserida de "+origem+" Para "+destino)
                         else:
                             print("FALHA AO INSERIR ARESTA")   
@@ -213,6 +225,10 @@ while opcao != 0:
             # 9 - RETORNA VIZINHOS
             elif menuGrafo == 9:
                 pass
+
+            # 0 - SAIR
+            elif menuGrafo == 0:
+                break
 
             # LOOPING DO MENU DO GRAFO
             menuGrafo = menu()
