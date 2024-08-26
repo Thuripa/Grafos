@@ -29,7 +29,6 @@ def menu():
 print("Trabalho de Grafos")
 print("1 - Criar Grafo em Matriz")
 print("2 - Criar Grafo em Lista")
-print("0 - SAIR")
 
 opcao = int(input("Escolha uma opção:  "))
 dir = str(input("O Grafo é Direcionado? (S/N) : "))
@@ -81,11 +80,13 @@ while opcao != 0:
 
                 # SE JÁ EXISTIR
                 if (existe):
+                    print()
                     print("VÉRTICE JÁ EXISTENTE")
 
                 # SENÃO
                 else: 
-                    grafo.inserirVertice(rotulo)    
+                    grafo.inserirVertice(rotulo)
+                    print()
                     print("Vértice inserido com sucesso!")
 
                 
@@ -93,20 +94,27 @@ while opcao != 0:
             # 2 - REMOVER VÉRTICE
             elif menuGrafo == 2:
 
-                # DEFINE O RÓTULO DO VÉRTICE A SER INSERIDO
+                # DEFINE O RÓTULO DO VÉRTICE A SER EXCLUÍDO
                 rotulo = str(input("Insira o rótulo do vértice a ser excluído: ")).strip()
 
-                # SE O VÉRTICE EXISTE NO GRAFO
-                if grafo.removerVertice(rotulo):
+                # Para cada Vértice no Grafo
+                for vertice in grafo.vertices:
 
-                    print("Vértice removido")
+                    # Se existir o tal Vértice
+                    if vertice.rotulo == rotulo:
 
-                # SE NÃO EXISTIR
-                else:
-                    print("Vértice não existe!")
+                        # SE O VÉRTICE EXISTE NO GRAFO
+                        if grafo.removerVertice(vertice):
+                            print()
+                            print("Vértice removido com sucesso!")
 
-            # 3 - ROTULAR VÉRTICE
-            # Edita o rótulo do vértice
+                        # SE NÃO EXISTIR
+                        else:
+                            print()
+                            print("Vértice não existe!")
+
+
+            # 3 - ROTULAR VÉRTICE (Edita o rótulo do vértice)
             elif menuGrafo == 3:
 
                 # DEFINE O RÓTULO DO VÉRTICE A SER EDITADO
@@ -115,7 +123,12 @@ while opcao != 0:
                 # DEFINE O NOVO RÓTULO DO VÉRTICE
                 novo_rotulo = str(input("Insira o novo rótulo: ")).strip()
 
-                
+                if grafo.rotulaVertice():
+                    print()
+                    print("Vértice editado com sucesso! ")
+                else:
+                    print()
+                    print("Vértice não existe!")
 
             # 4 - IMPRIMIR GRAFO
             elif menuGrafo == 4:
@@ -216,12 +229,48 @@ while opcao != 0:
             # 6 - REMOVER ARESTA
             elif menuGrafo == 6:
                 pass
+
             # 7 - EXISTE ARESTA
             elif menuGrafo == 7:
-                pass
+                        
+                # DEFINE O VÉRTICE DE ORIGEM
+                origem = str(input("Insira o Vértice de Origem: "))
+
+                # DEFINE O VÉRTICE DE DESTINO
+                destino = str(input("Insira o Vértice de Destino: "))
+
+                if grafo.existeAresta(origem, destino) == True:
+
+                    print()
+                    print("Existe aresta entre " + origem + " e " + destino )
+                else:
+
+                    print()
+                    print("NÃO Existe aresta entre " + origem + " e " + destino )
+
             # 8 - PESO ARESTA
             elif menuGrafo == 8:
-                pass
+                
+                # DEFINE O VÉRTICE DE ORIGEM
+                origem = str(input("Insira o Vértice de Origem: "))
+
+                # DEFINE O VÉRTICE DE DESTINO
+                destino = str(input("Insira o Vértice de Destino: "))
+
+                # Pega o peso da aresta
+                peso = grafo.pesoAresta(origem, destino)
+
+                # Se o retorno for diferente de Falso
+                if peso != False:
+
+                    print()
+                    print("O peso da aresta é de: "+ str(peso))
+                else:
+
+                    print()
+                    print("NÃO Existe aresta entre " + origem + " e " + destino )
+
+
             # 9 - RETORNA VIZINHOS
             elif menuGrafo == 9:
                 pass
