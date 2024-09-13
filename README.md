@@ -13,6 +13,7 @@
  representações.
  
  Importante:
+ 
  ● O trabalho pode ser feito em até 3 pessoas, sem
  problemas fazer individualmente ou em dupla.
  
