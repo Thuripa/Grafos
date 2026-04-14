@@ -43,6 +43,9 @@ class GrafoLista:
 
                     # Chama a função para remover a aresta
                     self.removerAresta(vertice, rotulo)
+
+            # Remove o vértice da lista
+            self.vertices.remove(rotulo)
         
     # ROTULAR VERTICE (EDITAR)
     def rotulaVertice(self, rotulo, novo_rotulo):
@@ -58,10 +61,24 @@ class GrafoLista:
                 vertice.rotulo = novo_rotulo
                 return True
 
-        # Senão retona Falso
+        # Senão retorna Falso
         return False
 
-    # IMPRIMIR GRAFO
+    # VERIFICA SE O VÉRTICE EXISTE NO GRAFO
+    def existeVertice(self, rotulo):
+
+        # PARA CADA VERTICE NO GRAFO
+        for vertice in self.vertices:
+
+            # SE O ROTULO FOR IGUAL A UM DOS VERTICES
+            if vertice.rotulo == rotulo:
+                # RETORNA VERDADEIRO (VERTICE EXISTE NO GRAFO)
+                return True
+
+        # SENAO, RETORNA FALSO
+        return False
+
+        # IMPRIMIR GRAFO
     def imprimirGrafo(self):
 
         # PULA UMA LINHA
@@ -83,6 +100,8 @@ class GrafoLista:
             # PULA UMA LINHA
             print()    
                 
+    # INSERIR ARESTA
+
     # INSERIR ARESTA
     def inserirAresta(self, origem, destino, peso):
 
@@ -205,7 +224,9 @@ class GrafoLista:
                                 return True 
 
     # RETORNA O PESO DA ARESTA
-    def pesoAresta(self, origem, destino):
+
+    # RETORNA PESO ARESTA
+    def retornarPeso(self, origem, destino):
 
         # Verifica se o vértice de ORIGEM existe
         for vertice_origem in self.vertices:
@@ -232,23 +253,19 @@ class GrafoLista:
         return False
 
     # RETORNA VIZINHOS
-    def retornaVizinhos(rotulo):
-        pass
+    def retornaVizinhos(self, rotulo):
 
-    # VERIFICA SE O VÉRTICE EXISTE NO GRAFO
-    def existeVertice(self, rotulo):
-        
         # PARA CADA VERTICE NO GRAFO
         for vertice in self.vertices:
 
             # SE O ROTULO FOR IGUAL A UM DOS VERTICES
             if vertice.rotulo == rotulo:
-                    
-                # RETORNA VERDADEIRO (VERTICE EXISTE NO GRAFO)
-                return True
 
-        # SENAO, RETORNA FALSO
-        return False        
+                # Retorna a lista de arestas
+                return vertice.arestas
+
+
+
 
 # CLASSE VERTICE
 class Vertice:

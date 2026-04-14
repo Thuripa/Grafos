@@ -1,162 +1,100 @@
-# Classe GrafoLista
-class GrafoLista:
-
-    # Construtor
-    def __init__(self, ponderado, direcionado):
-
-        # Se o Grafo é ponderado ou não
+class GrafoMatriz:
+    def __init__(self, ponderado=False, direcionado=False):
+        self.vertices = []          # Lista de rótulos dos vértices
+        self.matriz = []            # Matriz de adjacência
         self.ponderado = ponderado
-
-        # Se o Grafo é direcionado ou não
         self.direcionado = direcionado
 
-    # INSERIR VERTICE
+    # INSERIR VÉRTICE
     def inserirVertice(self, rotulo):
 
-        # Verifica se o Vértice já existe
-        for vertice in self.vertices:
+        self.vertices.append(rotulo)
 
-            # Se existir
-            if vertice.rotulo == rotulo:
-                
-                # Retorna Falso em Caso de Falha
-                return False
-
-        # Se não existir
-
-        # Cria Vertice
-        vertice = Vertice(rotulo, [])
-
-        # Insere o Vértice no GrafoLista
-        self.vertices.append(vertice)    
-        
-        # Retorna Verdadeiro em Caso de Sucesso
+        # Adiciona nova linha e coluna na matriz
+        tamanho = len(self.vertices)
+        for linha in self.matriz:
+            linha.append(0)
+        self.matriz.append([0] * tamanho)
         return True
 
-    # REMOVER VERTICE
+    # REMOVER VÉRTICE
     def removerVertice(self, rotulo):
-
-        # Verifica se o vértice existe no Grafo
-        existe = False
-        for vertice in self.vertices:
-
-            # Se existir
-            if vertice.rotulo == rotulo:
-
-                # Remove o vértice
-                self.vertices.remove(vertice)
-                return True
-
-        # Senão
-        if not existe:
+        if rotulo not in self.vertices:
             return False
+        indice = self.vertices.index(rotulo)
 
-    # ROTULAR VERTICE (EDITAR)
-    def rotulaVertice(self, rotulo, novo_rotulo):
+        # Remove linha e coluna da matriz
+        self.matriz.pop(indice)
+        for linha in self.matriz:
+            linha.pop(indice)
 
-        # Verifica se o vértice existe no Grafo
-        existe = False
-        for vertice in self.vertices:
-
-            # Se existir
-            if vertice.rotulo == rotulo:
-                vertice.rotulo = rotulo
-                return True
-
-        # Senão
-        if not existe:
-            return False
-
-    # IMPRIMIR GRAFO
-    def imprimirGrafo(self):
-
-        # Imprime vértices
-        for vertice in self.vertices:
-            
-            # Imprime o rótulo do vértice
-            print(vertice.rotulo)
-
-            # FALTA IMPRIMIR AS ARESTAS DE CADA VERTICE
-                
-
-
-            
+        # Remove vértice da lista
+        self.vertices.remove(rotulo)
+        return True
 
     # INSERIR ARESTA
-    def inserirAresta(self, origem, destino, peso):
+    def inserirAresta(self, origem, destino, peso=1):
+        if origem not in self.vertices or destino not in self.vertices:
+            return False
+        i = self.vertices.index(origem)
+        j = self.vertices.index(destino)
 
-        # Existe origem
-        existe_origem = False
+        valor = peso if self.ponderado else 1
+        self.matriz[i][j] = valor
 
-        # Verifica se o vértice de ORIGEM existe
-        for vertice in self.vertices:
+        if not self.direcionado:
+            self.matriz[j][i] = valor
+        return True
 
-            # Se existir o Vértice ORIGEM no Grafo
-            if vertice.origem == origem:
+    # REMOVER ARESTA
+    def removerAresta(self, origem, destino):
+        if origem not in self.vertices or destino not in self.vertices:
+            return False
+        i = self.vertices.index(origem)
+        j = self.vertices.index(destino)
 
-                existe_origem = True
+        self.matriz[i][j] = 0
+        if not self.direcionado:
+            self.matriz[j][i] = 0
+        return True
 
-                # Verifica se o vértice de DESTINO existe
-                for vertice in self.vertices:
+    # EXISTE ARESTA
+    def existeAresta(self, origem, destino):
+        if origem not in self.vertices or destino not in self.vertices:
+            return False
+        i = self.vertices.index(origem)
+        j = self.vertices.index(destino)
+        return self.matriz[i][j] != 0
 
-                    # Se existir o Vértice DESTINO no Grafo
-                    if vertice.destino == destino:
+    def pesoAresta(self, origem, destino):
 
-                        # Cria Aresta
-                        nova_aresta = Aresta(origem, destino, peso)
+        # Define a linha i e coluna j
+        i = self.vertices.index(origem)
+        j = self.vertices.index(destino)
 
-                        # Insere a nova_aresta no Grafo
-                        self.arestas.append(nova_aresta)
+        return self.matriz[i][j]
 
-                        return True
+    # RETORNAR PESO
+    def retornarPeso(self, origem, destino):
+        if origem not in self.vertices or destino not in self.vertices:
+            return None
+        i = self.vertices.index(origem)
+        j = self.vertices.index(destino)
+        return self.matriz[i][j]
 
-        # Senão
-
-        if existe_origem:
-            print("Vértice de Origem não existe!")
-        else:
-            print("Vértice de Destino não existe!")
-        return False
-
-# VERIFICA SE O VÉRTICE EXISTE NO GRAFO
-def existeVertice(self, rotulo):
-        
-    # PARA CADA VERTICE NO GRAFO
-    for vertice in self.vertices:
-
-        # SE O ROTULO FOR IGUAL A UM DOS VERTICES
-        if vertice.rotulo == rotulo:
-                
-            # RETORNA VERDADEIRO (VERTICE EXISTE NO GRAFO)
-            return True
-
-    # SENAO, RETORNA FALSO
-    return False        
+    def retornarVizinhos(self, origem):
 
 
-# CLASSE VERTICE
-class Vertice:
+    def retornaVertice(self, origem):
+        pass
 
-    # Construtor do Vértice
-    def __init__(self, rotulo, arestas):
+    # IMPRIMIR MATRIZ
+    def imprimirGrafo(self):
+        print("\nMatriz de Adjacência:")
+        print("   " + " ".join(self.vertices))
+        for idx, linha in enumerate(self.matriz):
+            print(self.vertices[idx], linha)
 
-        # Rótulo (nome) do Vértice
-        self.rotulo = rotulo
-
-        # Lista de Arestas
-        self.arestas = arestas
-
-# CLASSE ARESTA
-class Aresta:
-
-    # Construtor da Aresta
-    def __init__(self, origem, destino, peso):
-
-        # Vértice de Origem
-        self.origem = origem
-
-        # Vértice de Destino
-        self.destino = destino
-
-        # Peso da Aresta
-        self.peso = peso
+# FUNÇÃO EXISTE VÉRTICE
+    def existeVertice(self, rotulo):
+        return rotulo in self.vertices
