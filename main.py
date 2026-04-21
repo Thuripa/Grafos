@@ -81,9 +81,12 @@ while opcao != 0:
 
                 # SENÃO
                 else:
-                    grafo.inserirVertice(rotulo)
-                    print()
-                    print("Vértice inserido com sucesso!")
+                    if grafo.inserirVertice(rotulo):
+                        print()
+                        print("Vértice inserido com sucesso!")
+                    else:
+                        print()
+                        print("Erro Ao Inserir Vértice!")
 
             # 2 - REMOVER VÉRTICE
             elif menuGrafo == 2:
@@ -220,8 +223,26 @@ while opcao != 0:
 
                             # 6 - REMOVER ARESTA
 
+            # 6 - REMOVER ARESTA
             elif menuGrafo == 6:
-                pass
+
+                origem = input("Insira o Vértice de Origem")
+                destino = input("Insira o Vértice de Destino")
+
+                # Se existir aresta no grafo
+                if grafo.existeAresta(origem, destino) == True:
+
+                    # Remove aresta
+                    grafo.removerAresta(origem, destino)
+
+                    print()
+                    print("Aresta removida com Sucesso!")
+                # senão
+                else:
+
+                    print()
+                    print("NÃO Existe aresta entre " + origem + " e " + destino)
+
 
             # 7 - EXISTE ARESTA
             elif menuGrafo == 7:
@@ -232,10 +253,12 @@ while opcao != 0:
                 # DEFINE O VÉRTICE DE DESTINO
                 destino = str(input("Insira o Vértice de Destino: "))
 
+                # SE EXISTIR ARESTA NO GRAFO
                 if grafo.existeAresta(origem, destino) == True:
 
                     print()
                     print("Existe aresta entre " + origem + " e " + destino)
+                # SENÃO
                 else:
 
                     print()
@@ -250,14 +273,15 @@ while opcao != 0:
                 # DEFINE O VÉRTICE DE DESTINO
                 destino = str(input("Insira o Vértice de Destino: "))
 
-                # Pega o peso da aresta
+                # PEGA O PESO DA ARESTA
                 peso = grafo.pesoAresta(origem, destino)
 
-                # Se o retorno for diferente de Falso
+                # SE O RETORNO FOR DIFERENTE DE FALSO
                 if peso != False:
 
                     print()
                     print("O peso da aresta é de: " + str(peso))
+                # SENÃO
                 else:
 
                     print()
@@ -267,16 +291,21 @@ while opcao != 0:
             # 9 - RETORNA VIZINHOS
             elif menuGrafo == 9:
 
+                # DEFINE O VÉRTICE DE ORIGEM
+                origem = str(input("Insira o Vértice de Origem: "))
+
                 # DEFINE O VÉRTICE DE DESTINO
-                origem = input("insira o Vértice de Origem: ")
+                destino = str(input("Insira o Vértice de Destino: "))
 
                 # SE EXISTIR VÉRTICE NO GRAFO RETORNA TODOS OS VIZINHOS
-                if grafo.existeVertice(origem):
+                if grafo.existeVertice(origem) and grafo.existeVertice(destino):
 
                     # PERCORRE A LISTA DE VIZINHOS DA ORIGEM
-                    i = self.vertices.index(origem)
-                    j = self.vertices.index(destino)
-                        # Printa o Destino da Aresta e o Peso do Caminho
+                    i = grafo.vertices.index(origem)
+                    j = grafo.vertices.index(destino)
+
+                    # PRINTA O DESTINO DA ARESTA E O PESO DO CAMINHO
+                    print("Aresta: "+grafo.matriz[i][j])
 
 
             # 0 - SAIR
@@ -351,7 +380,7 @@ while opcao != 0:
                 # DEFINE O NOVO RÓTULO DO VÉRTICE
                 novo_rotulo = str(input("Insira o novo rótulo: ")).strip()
 
-                if grafo.rotulaVertice():
+                if grafo.rotulaVertice(rotulo, novo_rotulo):
                     print()
                     print("Vértice editado com sucesso! ")
                 else:
